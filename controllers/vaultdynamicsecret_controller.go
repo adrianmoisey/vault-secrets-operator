@@ -345,6 +345,9 @@ func (r *VaultDynamicSecretReconciler) syncSecret(ctx context.Context, c vault.C
 		}
 	}
 
+	sleepTime := time.Duration(30 * time.Second)
+	time.Sleep(sleepTime)
+
 	if err := helpers.SyncSecret(ctx, r.Client, o, data); err != nil {
 		return nil, false, err
 	}
